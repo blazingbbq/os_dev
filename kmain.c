@@ -1,4 +1,8 @@
+#include "framebuffer.h"
+
 /* C entrypoint */
-int kmain() {
-    return 0xDEADBEEF;
+void kmain() {
+    char buf[] = "Hello, Framebuffer!";
+
+    fb_write(buf, 20);
 }
