@@ -41,7 +41,6 @@ void serial_easy_init(unsigned short com);
  * 
  *  @param com  The COM port to write to
  *  @param buf String to be output to the COM port
- *  @param len Length of the string buffer
 */
 int serial_write(unsigned short com, char *buf);
 

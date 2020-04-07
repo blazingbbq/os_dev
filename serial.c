@@ -7,16 +7,16 @@ void serial_easy_init(unsigned short com) {
     serial_configure_modem(com, 0x03);
 }
 
-int serial_write(unsigned short com, char *buf, unsigned int len) {
+int serial_write(unsigned short com, char *buf) {
     unsigned int written = 0;
-    while (written < len) {
+    while (buf[written] != 0) {
         if (serial_is_transmit_fifo_empty(com)) {
             outb(com, buf[written]);
             written++;
         }
     }
 
-    return len;
+    return 0;
 }
 
 void serial_configure_baud_rate(unsigned short com, unsigned short divisor) {

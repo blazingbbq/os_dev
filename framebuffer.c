@@ -4,17 +4,19 @@
 char *fb = (char *) 0x000B8000;
 unsigned short fb_curr_pos = 0x00000000;
 
-int fb_write(char *buf, unsigned int len) {
-    for (unsigned int i = 0; i < len; i++) {
+int fb_write(char *buf) {
+    unsigned int i = 0;
+    while (buf[i] != 0) {
         fb_write_cell(fb_curr_pos * 2, buf[i], (unsigned char) 15, (unsigned char) 0);
         fb_move_cursor(fb_curr_pos + 1);
 
         if (fb_curr_pos >= FB_ROWS * FB_COLS) {
             fb_scroll_by(1);
         }
+        i++;
     }
 
-    return len;
+    return 0;
 }
 
 void fb_scroll_by(unsigned int lines) {

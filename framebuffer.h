@@ -19,9 +19,8 @@
  *  scrolls if necessary.
  * 
  *  @param buf String to be output to framebuffer
- *  @param len Length of the string buffer
 */
-int fb_write(char *buf, unsigned int len);
+int fb_write(char *buf);
 
 /** fb_scroll_by:
  *  Scroll framebuffer test by given number of lines
