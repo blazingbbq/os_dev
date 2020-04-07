@@ -6,7 +6,7 @@ unsigned short fb_curr_pos = 0x00000000;
 
 int fb_write(char *buf, unsigned int len) {
     for (unsigned int i = 0; i < len; i++) {
-        fb_write_cell(fb_curr_pos * 2, buf[i], (unsigned char) 0, (unsigned char) 15);
+        fb_write_cell(fb_curr_pos * 2, buf[i], (unsigned char) 15, (unsigned char) 0);
         fb_move_cursor(fb_curr_pos + 1);
 
         if (fb_curr_pos >= FB_ROWS * FB_COLS) {
@@ -38,5 +38,5 @@ void fb_move_cursor(unsigned short pos) {
 
 void fb_write_cell(unsigned int i, char c, unsigned char fg, unsigned char bg) {
     fb[i] = c;
-    fb[i + 1] = ((fg & 0x0F) << 4) | (bg & 0x0F);
+    fb[i + 1] = ((bg & 0x0F) << 4) | (fg & 0x0F);
 }
