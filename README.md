@@ -1,8 +1,18 @@
+## Launch the os
+
+### Make
+
+```
+Make run
+```
+
+### Manual
+
 Generate loader.o: `nasm -f elf32 loader.s`
 
 Link kernel.elf executable: `ld -T link.ld -melf_i386 loader.o -o kernel.elf`
 
-Generate iso image: 
+Generate iso image:
 ```
 genisoimage -R                              \
             -b boot/grub/stage2_eltorito    \
@@ -17,3 +27,14 @@ genisoimage -R                              \
 ```
 
 Run Bochs: `bochs -f bochsrc.txt -q`
+
+## Development requirements
+
+Install dependencies:
+
+```
+sudo apt install build-essential nasm genisoimage bochs bochs-sdl bochs-x
+```
+
+OS is built for the i386 architecture.
+
