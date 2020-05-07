@@ -6,7 +6,7 @@
 
 - [x] Interrupt handling
   + [x] Register interrupt handlers by interrupt number
-- [ ] Keyboard driver
+- [x] Keyboard driver
 - [ ] Enable paging
 - [ ] Page frame allocation
 - [ ] Running C programs in User Mode
