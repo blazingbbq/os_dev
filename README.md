@@ -1,3 +1,34 @@
+# Simple OS for the i386 architecture
+
+## TODO
+
+### Main Tasks
+
+- [x] Interrupt handling
+  + [x] Register interrupt handlers by interrupt number
+- [ ] Keyboard driver
+- [ ] Enable paging
+- [ ] Page frame allocation
+- [ ] Running C programs in User Mode
+- [ ] Implement filesystem
+- [ ] System calls
+- [ ] Implement process scheduling
+- [ ] Simple shell
+- [ ] File editor
+
+### Side Quests:
+- [ ] Better logging / printing (newline characters, colors, log levels)
+- [ ] Util file:
+  + [ ] int_to_str
+
+## Development requirements
+
+Install dependencies:
+
+```
+sudo apt install build-essential nasm genisoimage bochs bochs-sdl bochs-x
+```
+
 ## Launch the os
 
 ### Make
@@ -27,14 +58,3 @@ genisoimage -R                              \
 ```
 
 Run Bochs: `bochs -f bochsrc.txt -q`
-
-## Development requirements
-
-Install dependencies:
-
-```
-sudo apt install build-essential nasm genisoimage bochs bochs-sdl bochs-x
-```
-
-OS is built for the i386 architecture.
-
