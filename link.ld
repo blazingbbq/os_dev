@@ -1,7 +1,10 @@
 ENTRY(loader)                /* the name of the entry label */
 
 SECTIONS {
-    . = 0x00100000;          /* the code should be loaded at 1 MB */
+    .grub_sig 0x00100000 : AT(0x100000)
+    {
+      *(.grub_sig)
+    }
 
     .text ALIGN (0x1000) :   /* align at 4 KB */
     {
