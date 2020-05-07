@@ -4,6 +4,8 @@
 #include "types.h"
 #include "io.h"
 
+isr_t interrupt_handlers[IDT_ENTRIES];
+
 void isr_init() {
   /* Set IDT gate entries, handlers are defined in idt.s */
   set_idt_gate(0, (u32) interrupt_handler_0);
@@ -73,13 +75,18 @@ void set_idt_gate(int n, u32 handler) {
   idt[n].offset_2 = (u16)(((handler) >> 16) & 0xFFFF);
 }
 
+void register_interrupt_handler(int n, isr_t handler){
+  interrupt_handlers[n] = handler;
+}
+
 void interrupt_handler(interrupt_state_t state) {
-  // TODO: Handle common isr and dispatch to correct handlers
   if (state.interrupt > 31)
     PIC_sendEOI(state.interrupt - 32);
 
-  char buf[] = "Interrupt handler!\n";
-  fb_write(buf);
+  if (interrupt_handlers[state.interrupt]) {
+    isr_t handler = interrupt_handlers[state.interrupt];
+    handler(state);
+  }
 }
 
 void PIC_remap(int offset1, int offset2) {

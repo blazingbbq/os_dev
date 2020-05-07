@@ -49,6 +49,8 @@ typedef struct {
   stack_state_t stack;
 }__attribute((packed)) interrupt_state_t;
 
+typedef void (*isr_t)(interrupt_state_t);
+
 /** isr_init
  *  Initialize interupt service routines and load IDT
  */
@@ -61,6 +63,14 @@ void isr_init();
  *  @param handler  Handler function for interrupt
  */
 void set_idt_gate(int n, u32 handler);
+
+/** register_interrupt_handler
+ *  Register handler function for given interrupt
+ *
+ *  @param n        Interrupt number
+ *  @param handler  Handler function for interrupt
+ */
+void register_interrupt_handler(int n, isr_t handler);
 
 /** interrupt_handler
  *  Common interrupt handler routine
