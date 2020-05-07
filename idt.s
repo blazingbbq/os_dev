@@ -52,7 +52,7 @@ common_interrupt_handler:
 
   ; restore esp, since we pushed error_code and interrupt number on the stack
   add   esp, 8
-  
+
   ; re-enable interrupts
   sti
 
@@ -93,3 +93,21 @@ no_error_code_interrupt_handler 28  ; reserved
 no_error_code_interrupt_handler 29  ; reserved
 no_error_code_interrupt_handler 30  ; reserved
 no_error_code_interrupt_handler 31  ; reserved
+; IRQs
+no_error_code_interrupt_handler 32  ; Programmable Interrupt Timer Interrupt
+no_error_code_interrupt_handler 33  ; Keyboard Interrupt
+no_error_code_interrupt_handler 34  ; Cascade (internal use by PIC, never raised)
+no_error_code_interrupt_handler 35  ; COM2
+no_error_code_interrupt_handler 36  ; COM1
+no_error_code_interrupt_handler 37  ; LPT2
+no_error_code_interrupt_handler 38  ; Floppy Disk
+no_error_code_interrupt_handler 39  ; LPT1
+no_error_code_interrupt_handler 40  ; CMOS real-time clock
+no_error_code_interrupt_handler 41  ; Free for peripherals
+no_error_code_interrupt_handler 42  ; Free for peripherals
+no_error_code_interrupt_handler 43  ; Free for peripherals
+no_error_code_interrupt_handler 44  ; PS2 Mouse
+no_error_code_interrupt_handler 45  ; FPU / Coprocessor / Inter-processor
+no_error_code_interrupt_handler 46  ; Primary ATA Hard Disk
+no_error_code_interrupt_handler 47  ; Secondary ATA Hard Disk
+
