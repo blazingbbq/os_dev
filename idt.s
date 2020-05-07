@@ -7,6 +7,7 @@ global load_idt
 ;        [esp    ] the return address
 load_idt:
   lidt  [ esp + 4 ]                 ; load the IDT
+  sti                               ; enable interrupts
   ret
 
 %macro no_error_code_interrupt_handler 1

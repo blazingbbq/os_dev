@@ -1,8 +1,8 @@
-OBJECTS = loader.o kmain.o framebuffer.o serial.o io.o gdt.o idt.o isr.o # keyboard.o util.o
+OBJECTS = loader.o kmain.o framebuffer.o serial.o io.o gdt.o idt.o isr.o keyboard.o util.o
 CC = gcc
 CFLAGS = -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector \
 			-ffreestanding -fpic -fomit-frame-pointer -nostartfiles \
-			-nodefaultlibs -Wall -Wextra -Werror -c 
+			-nodefaultlibs -Wall -Wextra -Werror -c
 LDFLAGS = -T link.ld -melf_i386
 AS = nasm
 ASFLAGS = -f elf

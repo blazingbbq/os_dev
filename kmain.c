@@ -2,6 +2,7 @@
 #include "serial.h"
 #include "gdt.h"
 #include "isr.h"
+#include "keyboard.h"
 
 /* C entrypoint */
 void kmain() {
@@ -9,12 +10,12 @@ void kmain() {
     set_gdt();
     /* Init ISRs */
     isr_init();
+    /* Init keyboard driver */
+    keyboard_init();
 
-    char buf[] = "Hello, World!\n";
-    fb_write(buf);
+    fb_write("Hello! ");
 
-    char serial_buf[] = "Hello, COM1!\nAnother Line!";
     serial_easy_init(SERIAL_COM1_BASE);
-    serial_write(SERIAL_COM1_BASE, serial_buf);
+    serial_write(SERIAL_COM1_BASE, "Hello, COM1!");
 }
 
