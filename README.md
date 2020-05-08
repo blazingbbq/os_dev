@@ -17,7 +17,10 @@
 - [ ] File editor
 
 ### Side Quests:
-- [ ] Better logging / printing (newline characters, colors, log levels)
+- [ ] Better logging / printing
+  + [x] newline characters
+  + [ ] colors
+  + [ ] log levels
 - [ ] Util file:
   + [ ] int_to_str
 

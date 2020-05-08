@@ -17,14 +17,19 @@
 /** fb_write:
  *  Writes given string to the framebuffer. Automatically advances cursor and
  *  scrolls if necessary.
- * 
+ *
  *  @param buf String to be output to framebuffer
 */
 int fb_write(char *buf);
 
+/** fb_backspace:
+ *  Remove the character immediately before the cursor
+ */
+void fb_backspace();
+
 /** fb_scroll_by:
  *  Scroll framebuffer test by given number of lines
- * 
+ *
  *  @param lines The number of lines to scroll by
 */
 void fb_scroll_by(unsigned int lines);

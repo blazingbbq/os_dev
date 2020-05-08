@@ -22,6 +22,7 @@ void toggle_ctrl(u8 scancode);
 void toggle_alt(u8 scancode);
 
 void ctrl_q_handler(u8 scancode);
+void backspace_handler(u8 scancode);
 
 const char * const ASCII_SCANCODES[] = {
   "", "ESC", "1", "2",
@@ -31,7 +32,7 @@ const char * const ASCII_SCANCODES[] = {
   "q", "w", "e", "r",
   "t", "y", "u", "i",
   "o", "p", "[", "]",
-  "ENTR", "L_CTRL", "a", "s",
+  "\n", "L_CTRL", "a", "s",
   "d", "f", "g", "h",
   "j", "k", "l", ";",
   "'", "`", "L_SHFT", "\\",
@@ -58,7 +59,7 @@ const char * const ASCII_SCANCODES_SHIFTED[] = {
   "Q", "W", "E", "R",
   "T", "Y", "U", "I",
   "O", "P", "{", "}",
-  "", "", "A", "S",
+  "\n", "", "A", "S",
   "D", "F", "G", "H",
   "J", "K", "L", ":",
   "\"", "~", "", "|",
@@ -102,6 +103,7 @@ void keyboard_init() {
   /* register_key_handler(RELEASE_SCANCODE(R_ALT_SCANCODE), toggle_alt); */
 
   register_ctrl_handler(0x10, ctrl_q_handler);
+  register_key_handler(0x0e, backspace_handler);
 }
 
 void keyboard_interrupt_handler(interrupt_state_t state) {
@@ -194,5 +196,11 @@ void ctrl_q_handler(u8 scancode) {
 
   /* TODO: exit(0) */
   fb_write("CTRL+Q");
+}
+
+void backspace_handler(u8 scancode) {
+  (void) scancode;
+
+  fb_backspace();
 }
 

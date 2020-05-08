@@ -13,7 +13,7 @@ void kmain() {
     /* Init keyboard driver */
     keyboard_init();
 
-    fb_write("Hello! ");
+    fb_write("Hello, World!\n");
 
     serial_easy_init(SERIAL_COM1_BASE);
     serial_write(SERIAL_COM1_BASE, "Hello, COM1!");
