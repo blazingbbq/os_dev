@@ -1,7 +1,7 @@
 #include "framebuffer.h"
 
 /* Starting address for the framebuffer memory-mapped IO */
-char *fb = (char *) 0x000B8000;
+char *fb = (char *) 0xC00B8000;
 unsigned short fb_curr_pos = 0x00000000;
 
 void advance_cursor();
