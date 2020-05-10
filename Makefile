@@ -1,4 +1,14 @@
-OBJECTS = loader.o kmain.o framebuffer.o serial.o io.o gdt.o idt.o isr.o keyboard.o util.o
+OBJECTS = loader.o \
+					kmain.o \
+					framebuffer.o \
+					serial.o \
+					io.o \
+					gdt.o \
+					idt.o \
+					isr.o \
+					keyboard.o \
+					util.o
+
 CC = gcc
 CFLAGS = -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector \
 			-ffreestanding -fpic -fomit-frame-pointer -nostartfiles \
@@ -12,9 +22,16 @@ all: kernel.elf
 kernel.elf: $(OBJECTS)
 	ld $(LDFLAGS) $(OBJECTS) -o kernel.elf
 
-os.iso: kernel.elf
+# Create module binary
+# TODO: Build these from modules/*
+program.bin: program.s
+	$(AS) -f bin $< -o $@
+
+os.iso: kernel.elf program.bin
+	mkdir -p iso/modules
 	cp kernel.elf iso/boot/kernel.elf
-	genisoimage -R                              \
+	cp program.bin iso/modules
+	genisoimage -R                        \
 				-b boot/grub/stage2_eltorito    \
 				-no-emul-boot                   \
 				-boot-load-size 4               \
@@ -35,4 +52,9 @@ run: os.iso
 	$(AS) $(ASFLAGS) $< -o $@
 
 clean:
-	rm -rf *.o kernel.elf os.iso
+	rm -rf \
+		*.o \
+		*.bin \
+		kernel.elf \
+		os.iso \
+		iso/modules

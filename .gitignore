@@ -1,6 +1,7 @@
 *.o
 *.elf
 *.out
+*.bin
 
 bochslog.txt
 os.iso
