@@ -3,6 +3,7 @@
 #include "framebuffer.h"
 #include "types.h"
 #include "io.h"
+#include "util.h"
 
 isr_t interrupt_handlers[IDT_ENTRIES];
 
@@ -86,6 +87,12 @@ void interrupt_handler(interrupt_state_t state) {
   if (interrupt_handlers[state.interrupt]) {
     isr_t handler = interrupt_handlers[state.interrupt];
     handler(state);
+  } else {
+    fb_write("Unhandled interrupt occurred: ");
+    char buf[8];
+    itoa(state.interrupt, buf, 10);
+    fb_write(buf);
+    fb_write("\n");
   }
 }
 

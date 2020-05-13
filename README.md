@@ -6,9 +6,10 @@
 
 - [x] Interrupt handling
   + [x] Register interrupt handlers by interrupt number
+  + [ ] Setup timer interrupt handler
 - [x] Keyboard driver
 - [x] Run GRUB modules
-- [ ] Enable paging
+- [x] Enable paging
 - [ ] Page frame allocation
 - [ ] Running C programs in User Mode
 - [ ] Implement filesystem
@@ -23,7 +24,8 @@
   + [ ] colors
   + [ ] log levels
 - [ ] Util file:
-  + [ ] int_to_str
+  + [x] itoa
+  + [x] str_reverse
 
 ## Development requirements
 
