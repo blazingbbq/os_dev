@@ -28,4 +28,15 @@ void itoa(u32 num, char dest[], u32 base);
  */
 void str_reverse(char str[], u32 len);
 
+/** memset
+ *  Set value of memory to given value
+ *
+ *  @param dest   Memory to set
+ *  @param val    Value to set memory to
+ *  @param len    Length of memory region to set
+ *
+ *  @return       The address of the memory region set
+ */
+u32* memset(u32 *dest, u32 val, u32 len);
+
 #endif /* INCLUDE_UTIL_H */

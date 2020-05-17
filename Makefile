@@ -7,6 +7,8 @@ OBJECTS = loader.o \
 					idt.o \
 					isr.o \
 					keyboard.o \
+					paging.o \
+					kheap.o \
 					util.o
 
 CC = gcc

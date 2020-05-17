@@ -1,9 +1,17 @@
 bits 32
 extern kmain                    ; the C entrypoint
 global loader                   ; the entry symbol for ELF
+global boot_page_directory      ; for use by page frame allocator
 
-MAGIC_NUMBER equ 0x1BADB002     ; define the magic number constant
-FLAGS        equ 0x00000001     ; multiboot flags: align modules
+extern _kernel_virtual_end
+global _kernel_virtual_end
+
+; GRUB flags
+ALIGN_MODULES equ 1<<0          ; align loaded modules on page (4KB) boundary
+MEMINFO       equ 1<<1          ; include information on available memory in multiboot information structure (ebx)
+
+MAGIC_NUMBER equ 0x1BADB002               ; define the magic number constant
+FLAGS        equ ALIGN_MODULES | MEMINFO  ; multiboot flags: align modules, include memory info
 CHECKSUM     equ -(MAGIC_NUMBER + FLAGS)  ; calculate the checksum
                                           ; (magic number + flags + checksum should equal 0)
 KERNEL_STACK_SIZE   equ 4096              ; size of stack in bytes

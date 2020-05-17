@@ -88,6 +88,7 @@ void interrupt_handler(interrupt_state_t state) {
     isr_t handler = interrupt_handlers[state.interrupt];
     handler(state);
   } else {
+    if (state.interrupt == 32) return;
     fb_write("Unhandled interrupt occurred: ");
     char buf[8];
     itoa(state.interrupt, buf, 10);

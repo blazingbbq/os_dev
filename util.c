@@ -49,3 +49,10 @@ void str_reverse(char str[], u32 len) {
   }
 }
 
+u32* memset(u32 *dest, u32 val, u32 len) {
+  u32 *ptr = (u32 *) dest;
+  while (len-- > 0)
+    *ptr++ = val;
+  return dest;
+}
+

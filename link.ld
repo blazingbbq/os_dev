@@ -3,10 +3,11 @@ ENTRY(loader)                /* the name of the entry label */
 SECTIONS {
     . = 0xC0100000;
     /* addd symbol that indicated the start address of the kernel */
-    _kernel_start = .;
+    _kernel_virtual_start = .;
+    _kernel_physical_start = . - 0xC0000000;
     .text ALIGN (0x1000) : AT(ADDR(.text) - 0xC0000000)   /* align at 4 KB */
     {
-        *(.grub_sig)  
+        *(.grub_sig)
         *(.text)             /* all text sections from all files */
     }
 
@@ -26,5 +27,6 @@ SECTIONS {
         *(.bss)              /* all bss sections from all files */
     }
     /* add symbol that indicates the end address of the kernel */
-    _kernel_end = .;
+    _kernel_virtual_end = .;
+    _kernel_physical_end = . - 0xC0000000;
 }
