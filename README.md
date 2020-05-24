@@ -1,9 +1,13 @@
 # Simple OS for the i386 architecture
 
-## TODO
+## To Do
 
-### Main Tasks
-
+### Main Goals
+- [x] Boot + Hello World
+- [x] Call C code from assembly
+- [x] Framebuffer driver
+- [x] Serial port driver
+- [x] Segmentation
 - [x] Interrupt handling
   + [x] Register interrupt handlers by interrupt number
   + [ ] Setup timer interrupt handler
@@ -11,10 +15,14 @@
 - [x] Run GRUB modules
 - [x] Enable paging
 - [ ] Page frame allocation
+- [ ] Create kernel heap
 - [ ] Running C programs in User Mode
 - [ ] Implement filesystem
 - [ ] System calls
 - [ ] Implement process scheduling
+
+### Stretch Goals
+
 - [ ] Simple shell
 - [ ] File editor
 
