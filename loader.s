@@ -5,6 +5,8 @@ global boot_page_directory      ; for use by page frame allocator
 
 extern _kernel_virtual_end
 global _kernel_virtual_end
+extern _kernel_physical_end
+global _kernel_physical_end
 
 ; GRUB flags
 ALIGN_MODULES equ 1<<0          ; align loaded modules on page (4KB) boundary
@@ -70,4 +72,5 @@ boot_page_directory:
                                     ; set PS (page size 4MB), RW and P (present)
   times (KERNEL_PDE - 1) dd 0       ; fill the directory (before the kernel directory entry) with empty entries
   dd 0x00000083
-  times (1024 - KERNEL_PDE - 1) dd 0 ; fill the rest of the directory with empty entries
+  times (1023 - KERNEL_PDE - 1) dd 0 ; fill the rest of the directory with empty entries
+  dd (boot_page_directory - KERNEL_VIRTUAL_ADDR) + 0x3  ; Make last entry point to the page directory itself

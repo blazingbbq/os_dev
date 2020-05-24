@@ -3,8 +3,6 @@
 
 #include "types.h"
 
-extern void _kernel_virtual_end();
-
 /** kmalloc_a
  *  Allocate chunk of memory. Chunk must be page alligned
  *

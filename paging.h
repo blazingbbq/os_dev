@@ -3,7 +3,8 @@
 
 #include "types.h"
 
-#define PAGE_SIZE   0x1000
+#define PAGE_SIZE         0x1000
+#define PAGE_SIZE_BYTES   0x400
 
 extern void boot_page_directory();
 
@@ -20,7 +21,7 @@ typedef struct page {
   u32 user        : 1;
   u32 accessed    : 1;
   u32 dirty       : 1;
-  u32 unused      : 7;
+  u32 reserved    : 7;
   u32 frame       : 20;
 } page_t;
 
